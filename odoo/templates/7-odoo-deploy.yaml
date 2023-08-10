@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: odoo-deployment
+  labels:
+    app: odoo
+  namespace: {{.Values.namespace}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: odoo
+  template:
+    metadata:
+      labels:
+        app: odoo
+    spec:
+      volumes:
+      - name: odooaddons
+        hostPath:
+          path: /odoo/addons/{{.Values.namespace}}  
+      containers:
+      - name: odoo
+        image: {{.values.odoo.imageversion}}
+        volumeMounts:
+        - name: odooaddons
+          mountPath: /mnt/extra-addons
+        ports:
+        - containerPort: 8069
+        #command: ["[test -e /mnt/extra-addons/requirements.txt ] && pip3"]
+        #args : ["install","-r", "/mnt/extra-addons/requirements.txt"]
+        env:
+        - name: HOST
+          value: postgres-service.{{.Values.namespace}}.svc
+        - name: USER
+          value: odoo
+        - name: PASSWORD
+          value: {{.Values.postgres.password}}
