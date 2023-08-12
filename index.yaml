@@ -4,11 +4,11 @@ entries:
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-08-10T19:24:44.799052807+03:00"
-    description: A Helm chart for Kubernetes
+    description: Odoo SaaS
     digest: d5e3cbbce25b7d68059be57786d6608e5293ef8f0b99e2abb63ebd220fecf72c
     name: odoo
     type: application
     urls:
-    - https://tharcisse.github.io/k8sclient/odoo-0.1.6.tgz
-    version: 0.1.6
+    - https://tharcisse.github.io/k8sclient/odoo-0.1.7.tgz
+    version: 0.1.7
 generated: "2023-08-10T19:24:44.7965102+03:00"
